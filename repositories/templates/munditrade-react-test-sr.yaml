@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: munditrade
+    provider: github
+    repository: react-test
+  name: munditrade-react-test
+spec:
+  description: Imported application for munditrade/react-test
+  httpCloneURL: https://github.com/munditrade/react-test.git
+  org: munditrade
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: react-test
+  scheduler:
+    kind: ""
+    name: ""
+  url: https://github.com/munditrade/react-test.git

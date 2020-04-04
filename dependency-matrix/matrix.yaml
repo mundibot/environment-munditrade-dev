@@ -5,3 +5,9 @@ dependencies:
   url: https://github.com/munditrade/website.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: munditrade
+  repo: react-test
+  url: https://github.com/munditrade/react-test.git
+  version: ""
+  versionURL: ""
