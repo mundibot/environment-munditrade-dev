@@ -1,14 +1,11 @@
 apps:
-- name: jx-labs/istio
-- name: flagger/flagger
-- name: flagger/grafana
-- name: jx-labs/flagger-metrics
-- name: stable/kuberhealthy
-- name: bitnami/externaldns
+- name: stable/nginx-ingress
 - name: jenkins-x/jxboot-helmfile-resources
 - name: jenkins-x/bucketrepo
 - name: jenkins-x/lighthouse
 - name: jenkins-x/tekton
 - name: jenkins-x/jxui
+- name: bitnami/external-dns
+  phase: system
 - name: repositories
   repository: ".."

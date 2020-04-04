@@ -1,0 +1,4 @@
+rbac:
+  serviceAccountAnnotations:
+    foo: bar
+    iam.gke.io/gcp-service-account: munditrade-ex@jx-development.iam.gserviceaccount.com

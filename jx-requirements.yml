@@ -15,7 +15,6 @@ cluster:
   project: munditrade
   provider: gke
   registry: gcr.io
-  vaultName: mundi-jx-vault
   zone: us-central1-a
 environments:
 - ingress:
@@ -54,7 +53,6 @@ gitops: true
 helmfile: true
 ingress:
   domain: mundi.work
-  kind: istio
   externalDNS: false
   namespaceSubDomain: ""
   tls:

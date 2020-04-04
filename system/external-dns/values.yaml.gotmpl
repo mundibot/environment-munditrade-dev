@@ -1,0 +1,30 @@
+rbac:
+  serviceAccountAnnotations:
+    foo: bar
+    iam.gke.io/gcp-service-account: munditrade-ex@jx-development.iam.gserviceaccount.com
+
+sources:
+- ingress
+{{- if eq .Values.jxRequirements.cluster.provider "eks" }}
+provider: aws
+aws:
+  region: {{ .Values.jxRequirements.cluster.region }}
+securityContext:
+  fsGroup: 65534
+{{- else if eq .Values.jxRequirements.cluster.provider "gke" }}
+provider: google
+google:
+#  serviceAccountSecret: external-dns-gcp-sa
+{{- if hasKey .Values.jxRequirements.cluster "project" }}
+  project: "{{ .Values.jxRequirements.cluster.project }}"
+{{- end }}
+{{- end }}
+
+rbac:
+  create: true
+domainFilters:
+{{- range .Values.jxRequirements.environments }}
+{{- if .ingress.domain }}
+- "{{ .ingress.domain }}"
+{{- end }}
+{{- end }}
