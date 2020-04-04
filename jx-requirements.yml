@@ -15,12 +15,13 @@ cluster:
   project: munditrade
   provider: gke
   registry: gcr.io
+  vaultName: mundi-jx-vault
   zone: us-central1-a
 environments:
 - ingress:
-    domain: dev.mundi.work
+    domain: mundi.work
     externalDNS: false
-    namespaceSubDomain: ""
+    namespaceSubDomain: -jx.
     tls:
       email: tech@mundi.io
       enabled: false
@@ -52,7 +53,7 @@ helmfile: true
 ingress:
   domain: mundi.work
   externalDNS: false
-  namespaceSubDomain: ""
+  namespaceSubDomain: -jx.
   tls:
     email: tech@mundi.io
     enabled: false
@@ -80,6 +81,6 @@ velero:
   schedule: ""
   ttl: ""
 versionStream:
-  ref: master
+  ref: v2.0.109
   url: https://github.com/jenkins-x-labs/jenkins-x-versions.git
 webhook: lighthouse

@@ -1,0 +1,87 @@
+jxRequirements:
+  autoUpdate:
+    enabled: true
+    schedule: 0 12 */5 * *
+  bootConfigURL: https://github.com/munditrade/environment-munditrade-dev
+  cluster:
+    chartRepository: http://bucketrepo/bucketrepo/charts/
+    clusterName: munditrade
+    devEnvApprovers:
+    - juanchristensen
+    environmentGitOwner: munditrade
+    gitKind: github
+    gitName: github
+    gitServer: https://github.com
+    namespace: jx
+    project: munditrade
+    provider: gke
+    registry: gcr.io
+    vaultName: mundi-jx-vault
+    zone: us-central1-a
+  environments:
+  - ingress:
+      domain: mundi.work
+      externalDNS: false
+      namespaceSubDomain: -jx.
+      tls:
+        email: tech@mundi.io
+        enabled: false
+        production: false
+    key: dev
+    repository: environment-munditrade-dev
+  - ingress:
+      domain: staging.mundi.work
+      externalDNS: false
+      namespaceSubDomain: ""
+      tls:
+        email: tech@mundi.io
+        enabled: false
+        production: false
+    key: staging
+    repository: environment-munditrade-staging
+  - ingress:
+      domain: production.mundi.work
+      externalDNS: false
+      namespaceSubDomain: ""
+      tls:
+        email: tech@mundi.io
+        enabled: false
+        production: false
+    key: production
+    repository: environment-munditrade-production
+  gitops: true
+  helmfile: true
+  ingress:
+    domain: mundi.work
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: tech@mundi.io
+      enabled: false
+      production: false
+  kaniko: true
+  repository: bucketrepo
+  secretStorage: local
+  storage:
+    backup:
+      enabled: true
+      url: gs://mundi-jx-boot-backup
+    logs:
+      enabled: true
+      url: gs://mundi-jx-boot-logs
+    reports:
+      enabled: true
+      url: gs://mundi-jx-boot-reports
+    repository:
+      enabled: true
+      url: gs://mundi-jx-boot-repository
+  vault:
+    name: mundi-jx-vault
+  velero:
+    namespace: velero
+    schedule: ""
+    ttl: ""
+  versionStream:
+    ref: v2.0.109
+    url: https://github.com/jenkins-x-labs/jenkins-x-versions.git
+  webhook: lighthouse

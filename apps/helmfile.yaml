@@ -1,0 +1,61 @@
+bases:
+- ../environments.yaml
+helmDefaults:
+  atomic: true
+  devel: false
+  force: false
+  recreatePods: false
+  tillerless: false
+  timeout: 520
+  tls: false
+  verify: false
+  wait: true
+releases:
+- chart: jenkins-x/jxboot-helmfile-resources
+  name: jxboot-helmfile-resources
+  namespace: jx
+  values:
+  - /secrets/jenkins-x-versions/apps/jenkins-x/jxboot-helmfile-resources/values.yaml.gotmpl
+  - ../jx-requirements.values.yaml.gotmpl
+  - /secrets/jx-boot/secrets.yaml
+  version: 0.0.117
+- chart: jenkins-x/bucketrepo
+  name: bucketrepo
+  namespace: jx
+  values:
+  - /secrets/jenkins-x-versions/apps/jenkins-x/bucketrepo/values.yaml.gotmpl
+  - ../jx-requirements.values.yaml.gotmpl
+  - /secrets/jx-boot/secrets.yaml
+  version: 0.1.35
+- chart: jenkins-x/lighthouse
+  name: lighthouse
+  namespace: jx
+  values:
+  - /secrets/jenkins-x-versions/apps/jenkins-x/lighthouse/values.yaml.gotmpl
+  - ../jx-requirements.values.yaml.gotmpl
+  - /secrets/jx-boot/secrets.yaml
+  version: 0.0.493
+- chart: jenkins-x/tekton
+  name: tekton
+  namespace: jx
+  values:
+  - /secrets/jenkins-x-versions/apps/jenkins-x/tekton/values.yaml.gotmpl
+  - ../jx-requirements.values.yaml.gotmpl
+  - /secrets/jx-boot/secrets.yaml
+  version: 0.0.51
+- chart: jenkins-x/jxui
+  name: jxui
+  namespace: jx
+  values:
+  - /secrets/jenkins-x-versions/apps/jenkins-x/jxui/values.yaml.gotmpl
+  - ../jx-requirements.values.yaml.gotmpl
+  - /secrets/jx-boot/secrets.yaml
+- chart: ../repositories
+  name: repositories
+  namespace: jx
+  values:
+  - ../jx-requirements.values.yaml.gotmpl
+  - /secrets/jx-boot/secrets.yaml
+repositories:
+- name: jenkins-x
+  url: https://storage.googleapis.com/chartmuseum.jenkins-x.io
