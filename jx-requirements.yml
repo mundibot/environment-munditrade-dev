@@ -1,21 +1,89 @@
-bootConfigURL: https://github.com/jenkins-x-labs/jenkins-x-boot-config-jenkins
+autoUpdate:
+  enabled: true
+  schedule: 0 12 */5 * *
+bootConfigURL: https://github.com/munditrade/environment-munditrade-dev
 cluster:
+  chartRepository: http://bucketrepo/bucketrepo/charts/
+  clusterName: munditrade
+  devEnvApprovers:
+  - juanchristensen
+  environmentGitOwner: munditrade
   gitKind: github
   gitName: github
   gitServer: https://github.com
   namespace: jx
+  project: munditrade
+  provider: gke
+  registry: gcr.io
+  vaultName: mundi-jx-vault
+  zone: us-central1-a
 environments:
-- key: dev
-- key: staging
-  remoteCluster: false
-- key: production
-  remoteCluster: false
+- ingress:
+    domain: dev.mundi.work
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: tech@mundi.io
+      enabled: false
+      production: false
+  key: dev
+  repository: environment-munditrade-dev
+- ingress:
+    domain: staging.mundi.work
+    externalDNS: false
+    namespaceSubDomain: ""
+    remoteCluster: false
+    tls:
+      email: tech@mundi.io
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-munditrade-staging
+- ingress:
+    domain: production.mundi.work
+    externalDNS: false
+    namespaceSubDomain: ""
+    remoteCluster: false
+    tls:
+      email: tech@mundi.io
+      enabled: false
+      production: false
+  key: production
+  repository: environment-munditrade-production
 gitops: true
 helmfile: true
+ingress:
+  domain: mundi.work
+  kind: istio
+  externalDNS: false
+  namespaceSubDomain: ""
+  tls:
+    email: tech@mundi.io
+    enabled: false
+    production: false
 kaniko: true
 repository: nexus
 secretStorage: local
+storage:
+  backup:
+    enabled: true
+    url: gs://mundi-jx-boot-backup
+  logs:
+    enabled: true
+    url: gs://mundi-jx-boot-logs
+  reports:
+    enabled: true
+    url: gs://mundi-jx-boot-reports
+  repository:
+    enabled: true
+    url: gs://mundi-jx-boot-repository
+vault:
+  name: mundi-jx-vault
+velero:
+  namespace: velero
+  schedule: ""
+  ttl: ""
 versionStream:
   ref: master
-  url: https://github.com/jstrachan/jenkins-x-versions.git
+  url: https://github.com/jenkins-x-labs/jenkins-x-versions.git
 webhook: lighthouse
