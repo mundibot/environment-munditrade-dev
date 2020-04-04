@@ -31,7 +31,6 @@ environments:
     domain: staging.mundi.work
     externalDNS: false
     namespaceSubDomain: ""
-    remoteCluster: false
     tls:
       email: tech@mundi.io
       enabled: false
@@ -42,7 +41,6 @@ environments:
     domain: production.mundi.work
     externalDNS: false
     namespaceSubDomain: ""
-    remoteCluster: false
     tls:
       email: tech@mundi.io
       enabled: false
