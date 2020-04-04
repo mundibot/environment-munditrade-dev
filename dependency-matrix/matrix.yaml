@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: munditrade
+  repo: website
+  url: https://github.com/munditrade/website.git
+  version: ""
+  versionURL: ""
